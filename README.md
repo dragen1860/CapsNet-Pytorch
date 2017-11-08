@@ -2,10 +2,11 @@
 
 # CapsNet-Pytorch
 Pytorch version of Hinton's paper: [Dynamic Routing Between Capsules](https://arxiv.org/abs/1710.09829)
-> Some implementations of CapsNet have potential problems and it's uneasy to realize the bugs since MNIST is simple to achieve satisfying accuracy.
+> Some implementations of CapsNet online have potential problems and it's uneasy to realize the bugs since MNIST is too simple to achieve satisfying accuracy.
 
 # Network
 ![](res/model.png)
+> Corresponding class: Input > Conv1 > Caps(cnn inside) > Route > Loss  
 
 # Screenshots
 - running
@@ -14,17 +15,18 @@ Pytorch version of Hinton's paper: [Dynamic Routing Between Capsules](https://ar
 ![](res/train-loss.png)
 
 # Highlights
-- Highly abstraction of Caps layer, by re-write function `create_cell_fn` you can implement your sub-network inside a capsule
+- Highly abstraction of Caps layer, by re-writing the function `create_cell_fn` you can implement your own sub-network inside `Caps` Layer
 >    def create_cell_fn(self):  
-        """  
-        create sub-network inside a capsule.  
-        :return:  
-        """  
-        conv1 = nn.Conv2d(self.conv1_kernel_num, self.caps1_conv_kernel_num, kernel_size = self.caps1_conv_kernel_size, stride = self.caps1_conv1_stride)  
-        #relu = nn.ReLU(inplace = True)  
-        #net = nn.Sequential(conv1, relu)  
-        return conv1  
+        	"""  
+        	create sub-network inside a capsule.  
+        	:return:  
+        	"""  
+        	conv1 = nn.Conv2d(self.conv1_kernel_num, self.caps1_conv_kernel_num, kernel_size = self.caps1_conv_kernel_size, stride = self.caps1_conv1_stride)  
+        	#relu = nn.ReLU(inplace = True)  
+        	#net = nn.Sequential(conv1, relu)  
+        	return conv1  
 - Highly abstraction of routing layer by class `Route`, you can take use of `Caps` Layer and `Route` Layer to construct any type of network
+- No DigitsCaps Layer, and it's just the output of `Route` layer.
 
 ## Status
 
@@ -65,16 +67,15 @@ Contact me with email: dcslong@nus.edu.sg or wechat: dragen1860
 |----------|---------|----------------|-------|---|
 | Baseline | -       | -              | 0.39  |   |
 | Paper    | 3       | no             | 0.35  |   |
-| Ours     |         |                | 0.39  |   |
+| Ours     | 3       | no             | 0.39  |   |
 
 It takes about 150s per epoch for single GTX 970 4GB Card.
 
 ## Other Implementations
-- Kaggle (this version as self-contained notebook):
-  - [MNIST Dataset](https://www.kaggle.com/kmader/capsulenet-on-mnist) running on the standard MNIST and predicting for test data
-  - [MNIST Fashion](https://www.kaggle.com/kmader/capsulenet-on-fashion-mnist) running on the more challenging Fashion images.
+- Keras:
+  - [XifengGuo/Capsnet-Keras](https://github.com/XifengGuo/CapsNet-Keras) Good written.
 - TensorFlow:
-  - [naturomics/CapsNet-Tensorflow](https://github.com/naturomics/CapsNet-Tensorflow.git)   
+  - [naturomics/CapsNet-Tensorflow](https://github.com/naturomics/CapsNet-Tensorflow.git)  The first implementation online. 
   - [InnerPeace-Wu/CapsNet-tensorflow](https://github.com/InnerPeace-Wu/CapsNet-tensorflow)  
   - [LaoDar/tf_CapsNet_simple](https://github.com/LaoDar/tf_CapsNet_simple)
 
