@@ -1,5 +1,9 @@
+# CapsNet-Keras
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/dragen1860/CapsNet-Pytorch.git)
+
 # CapsNet-Pytorch
 Pytorch version of Hinton's paper: Dynamic Routing Between Capsules
+> Some implementations of CapsNet have some potential problems and it's uneasy to realize the bugs since MNIST is simple to achieve satisfying accuracy.
 
 ## Status
 
@@ -22,6 +26,7 @@ Contact me with email: dcslong@nus.edu.sg or wechat: dragen1860
 
 ## Step 2. Clone the repository to local
 >git clone https://github.com/dragen1860/CapsNet-Pytorch.git
+
 cd CapsNet-Pytorch
 
 ## Step 3. Train CapsNet on MNIST
@@ -35,3 +40,32 @@ cd CapsNet-Pytorch
 4. OR you can comment the part of train code and test its performance with pretrained model `mdl` file.
 
 # Results
+
+| Model    | Routing | Reconstruction | MNIST |   |
+|----------|---------|----------------|-------|---|
+| Baseline | -       | -              | 0.39  |   |
+| Paper    | 3       | no             | 0.35  |   |
+| Ours     |         |                | 0.39  |   |
+
+
+## Other Implementations
+- Kaggle (this version as self-contained notebook):
+  - [MNIST Dataset](https://www.kaggle.com/kmader/capsulenet-on-mnist) running on the standard MNIST and predicting for test data
+  - [MNIST Fashion](https://www.kaggle.com/kmader/capsulenet-on-fashion-mnist) running on the more challenging Fashion images.
+- TensorFlow:
+  - [naturomics/CapsNet-Tensorflow](https://github.com/naturomics/CapsNet-Tensorflow.git)   
+  - [InnerPeace-Wu/CapsNet-tensorflow](https://github.com/InnerPeace-Wu/CapsNet-tensorflow)  
+  - [LaoDar/tf_CapsNet_simple](https://github.com/LaoDar/tf_CapsNet_simple)
+
+- PyTorch:  
+  - [gram-ai/capsule-networks](https://github.com/gram-ai/capsule-networks) 
+  - [leftthomas/CapsNet](https://github.com/leftthomas/CapsNet)
+  
+- MXNet:
+  - [AaronLeong/CapsNet_Mxnet](https://github.com/AaronLeong/CapsNet_Mxnet)
+  
+- Lasagne (Theano):
+  - [DeniskaMazur/CapsNet-Lasagne](https://github.com/DeniskaMazur/CapsNet-Lasagne)
+
+- Chainer:
+  - [soskek/dynamic_routing_between_capsules](https://github.com/soskek/dynamic_routing_between_capsules)
