@@ -15,15 +15,15 @@ Pytorch version of Hinton's paper: [Dynamic Routing Between Capsules](https://ar
 
 # Highlights
 - Highly abstraction of Caps layer, by re-write function `create_cell_fn` you can implement your sub-network inside a capsule
->    def create_cell_fn(self):
-        """
-        create sub-network inside a capsule.
-        :return:
-        """
-        conv1 = nn.Conv2d(self.conv1_kernel_num, self.caps1_conv_kernel_num, kernel_size = self.caps1_conv_kernel_size, stride = self.caps1_conv1_stride)
-        #relu = nn.ReLU(inplace = True)
-        #net = nn.Sequential(conv1, relu)
-        return conv1
+>    def create_cell_fn(self):  
+        """  
+        create sub-network inside a capsule.  
+        :return:  
+        """  
+        conv1 = nn.Conv2d(self.conv1_kernel_num, self.caps1_conv_kernel_num, kernel_size = self.caps1_conv_kernel_size, stride = self.caps1_conv1_stride)  
+        #relu = nn.ReLU(inplace = True)  
+        #net = nn.Sequential(conv1, relu)  
+        return conv1  
 - Highly abstraction of routing layer by class `Route`, you can take use of `Caps` Layer and `Route` Layer to construct any type of network
 
 ## Status
