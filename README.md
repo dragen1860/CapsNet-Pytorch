@@ -1,13 +1,18 @@
-# CapsNet-Keras
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/dragen1860/CapsNet-Pytorch.git)
 
 # CapsNet-Pytorch
 Pytorch version of Hinton's paper: Dynamic Routing Between Capsules
-> Some implementations of CapsNet have some potential problems and it's uneasy to realize the bugs since MNIST is simple to achieve satisfying accuracy.
+> Some implementations of CapsNet have potential problems and it's uneasy to realize the bugs since MNIST is simple to achieve satisfying accuracy.
+
+# Network
+![](res/model.png)
+
+# Screenshots
+![](res/capsnet-cmd.png)
 
 ## Status
 
-- Currently we train our model for 30 epochs, which means it is potential if more epochs are used to train
+- Currently we train our model for 30 epochs, which means it is potentially promising if more epochs are used to train
 - We don not use reconstruction loss now, and will add it later
 - The critical part of code is well commented with each dimension changes, which means you can follow the comments to understand the routing mechnism
 
@@ -26,8 +31,7 @@ Contact me with email: dcslong@nus.edu.sg or wechat: dragen1860
 
 ## Step 2. Clone the repository to local
 >git clone https://github.com/dragen1860/CapsNet-Pytorch.git
-
-cd CapsNet-Pytorch
+>cd CapsNet-Pytorch
 
 ## Step 3. Train CapsNet on MNIST
 
@@ -47,6 +51,7 @@ cd CapsNet-Pytorch
 | Paper    | 3       | no             | 0.35  |   |
 | Ours     |         |                | 0.39  |   |
 
+It takes about 150s per epoch for single GTX 970 4GB Card.
 
 ## Other Implementations
 - Kaggle (this version as self-contained notebook):
