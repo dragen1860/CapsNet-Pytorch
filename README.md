@@ -17,14 +17,14 @@ Pytorch version of Hinton's paper: [Dynamic Routing Between Capsules](https://ar
 # Highlights
 - Highly abstraction of Caps layer, by re-writing the function `create_cell_fn` you can implement your own sub-network inside `Caps` Layer
 >    def create_cell_fn(self):  
-        	"""  
-        	create sub-network inside a capsule.  
-        	:return:  
-        	"""  
-        	conv1 = nn.Conv2d(self.conv1_kernel_num, self.caps1_conv_kernel_num, kernel_size = self.caps1_conv_kernel_size, stride = self.caps1_conv1_stride)  
-        	#relu = nn.ReLU(inplace = True)  
-        	#net = nn.Sequential(conv1, relu)  
-        	return conv1  
+            """  
+            create sub-network inside a capsule.  
+            :return:  
+            """  
+            conv1 = nn.Conv2d(self.conv1_kernel_num, self.caps1_conv_kernel_num, kernel_size = self.caps1_conv_kernel_size, stride = self.caps1_conv1_stride)  
+            #relu = nn.ReLU(inplace = True)  
+            #net = nn.Sequential(conv1, relu)  
+            return conv1  
 - Highly abstraction of routing layer by class `Route`, you can take use of `Caps` Layer and `Route` Layer to construct any type of network
 - No DigitsCaps Layer, and it's just the output of `Route` layer.
 
@@ -48,7 +48,7 @@ Contact me with email: dcslong@nus.edu.sg or wechat: dragen1860
 >conda install pytorch torchvision cuda80 -c soumith
 
 ## Step 2. Clone the repository to local
->git clone https://github.com/dragen1860/CapsNet-Pytorch.git
+>git clone https://github.com/dragen1860/CapsNet-Pytorch.git  
 >cd CapsNet-Pytorch
 
 ## Step 3. Train CapsNet on MNIST
@@ -56,7 +56,7 @@ Contact me with email: dcslong@nus.edu.sg or wechat: dragen1860
 1. please modify the variable `glo_batch_size = 125` to appropriate size according to your GPU memory size.
 2. run
 >$ python main.py
-3. turn on tensorboard version of pytorch
+3. turn on tensorboard
 >$ tensorboard --logdir runs 
 
 4. OR you can comment the part of train code and test its performance with pretrained model `mdl` file.
