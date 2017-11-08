@@ -6,10 +6,9 @@ import torch.optim as optim
 from torchvision import datasets, transforms 
 from tqdm import tqdm
 import os
-
 from tensorboardX import SummaryWriter
 
-glo_batch_size = 50
+glo_batch_size = 100
 
 data_transform = transforms.Compose([
                     transforms.ToTensor(),
@@ -210,21 +209,21 @@ if __name__ == '__main__':
             net = torch.load('mdl')
             print('load mdl yet.')
 
-    for epoch in range(50):
+    for epoch in range(30):
 
-        # net.train()
-        # for batch_idx, (data, target) in enumerate(tqdm(train_loader, total = len(train_loader), ncols=100, leave=False, unit='b')):
-        #     target_onehot = to_one_hot(target, 10)
-        #     data, target = Variable(data).cuda(), Variable(target_onehot).cuda()
-        #
-        #     optimizer.zero_grad()
-        #     output = net(data)
-        #     loss = net.margin_loss(output, target)
-        #     loss.backward()
-        #     optimizer.step()
-        #
-        #     if batch_idx % 50 == 0 and batch_idx != 0:
-        #         tb.add_scalar('loss', loss.data[0])
+        net.train()
+        for batch_idx, (data, target) in enumerate(tqdm(train_loader, total = len(train_loader), ncols=100, leave=False, unit='b'+str(epoch))):
+            target_onehot = to_one_hot(target, 10)
+            data, target = Variable(data).cuda(), Variable(target_onehot).cuda()
+
+            optimizer.zero_grad()
+            output = net(data)
+            loss = net.margin_loss(output, target)
+            loss.backward()
+            optimizer.step()
+
+            if batch_idx % 50 == 0 and batch_idx != 0:
+                tb.add_scalar('loss', loss.data[0])
 
         net.eval()
         correct_prediction = 0.0
@@ -244,8 +243,9 @@ if __name__ == '__main__':
 
             if batch_idx % 100 == 0:
                 tb.add_scalar('accuracy', correct_prediction/(total_counter))
+                break
 
-        print('test accuracy:', correct_prediction/(total_counter))
+        print(epoch, 'test accuracy:', correct_prediction/(total_counter))
 
     torch.save(net, 'mdl')
     print('saved to mol file.')
