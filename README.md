@@ -70,7 +70,7 @@ OR you can comment the part of train code and test its performance with pretrain
 |----------|---------|----------------|-------|---|
 | Baseline | -       | -              | 0.39  |   |
 | Paper    | 3       | no             | 0.35  |   |
-| Ours     | 3       | no             | 0.39  |   |
+| Ours     | 3       | no             | **0.34**|   |
 
 It takes about 150s per epoch for single GTX 970 4GB Card.
 
