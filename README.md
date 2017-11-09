@@ -6,17 +6,18 @@ Pytorch version of Hinton's paper: [Dynamic Routing Between Capsules](https://ar
 
 # Network
 ![](res/model.png)
-> Corresponding class: Input > Conv1 > Caps(cnn inside) > Route > Loss  
+> Corresponding pipeline: Input > Conv1 > Caps(cnn inside) > Route > Loss  
 
 # Screenshots
 - running
 ![](res/capsnet-cmd.png)
 - training loss
-![](res/train-loss.png)
+![](res/accuracy-loss.png)
 
 # Highlights
-- Highly abstraction of Caps layer, by re-writing the function `create_cell_fn` you can implement your own sub-network inside `Caps` Layer
->    def create_cell_fn(self):  
+- Highly abstraction of `Caps` layer, by re-writing the function `create_cell_fn` you can implement your own sub-network inside `Caps` Layer
+```python
+    def create_cell_fn(self):  
             """  
             create sub-network inside a capsule.  
             :return:  
@@ -25,8 +26,9 @@ Pytorch version of Hinton's paper: [Dynamic Routing Between Capsules](https://ar
             #relu = nn.ReLU(inplace = True)  
             #net = nn.Sequential(conv1, relu)  
             return conv1  
+```
 - Highly abstraction of routing layer by class `Route`, you can take use of `Caps` Layer and `Route` Layer to construct any type of network
-- No DigitsCaps Layer, and it's just the output of `Route` layer.
+- No DigitsCaps Layer, and we just just the output of `Route` layer.
 
 ## Status
 
@@ -59,7 +61,8 @@ Contact me with email: dcslong@nus.edu.sg or wechat: dragen1860
 3. turn on tensorboard
 >$ tensorboard --logdir runs 
 
-4. OR you can comment the part of train code and test its performance with pretrained model `mdl` file.
+## Step 4. Validate CapsNet on MNIST
+OR you can comment the part of train code and test its performance with pretrained model `mdl` file.
 
 # Results
 
@@ -73,15 +76,12 @@ It takes about 150s per epoch for single GTX 970 4GB Card.
 
 ## Other Implementations
 - Keras:
-  - [XifengGuo/Capsnet-Keras](https://github.com/XifengGuo/CapsNet-Keras) Good written.
+  - [XifengGuo/Capsnet-Keras](https://github.com/XifengGuo/CapsNet-Keras) Well written.
+
 - TensorFlow:
   - [naturomics/CapsNet-Tensorflow](https://github.com/naturomics/CapsNet-Tensorflow.git)  The first implementation online. 
   - [InnerPeace-Wu/CapsNet-tensorflow](https://github.com/InnerPeace-Wu/CapsNet-tensorflow)  
   - [LaoDar/tf_CapsNet_simple](https://github.com/LaoDar/tf_CapsNet_simple)
-
-- PyTorch:  
-  - [gram-ai/capsule-networks](https://github.com/gram-ai/capsule-networks) 
-  - [leftthomas/CapsNet](https://github.com/leftthomas/CapsNet)
   
 - MXNet:
   - [AaronLeong/CapsNet_Mxnet](https://github.com/AaronLeong/CapsNet_Mxnet)
