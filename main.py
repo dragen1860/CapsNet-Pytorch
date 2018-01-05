@@ -8,7 +8,8 @@ from tqdm import tqdm
 import os
 from tensorboardX import SummaryWriter
 
-glo_batch_size = 100
+# change batch size for your GPU card !!!
+glo_batch_size = 180
 
 data_transform = transforms.Compose([
                     transforms.ToTensor(),
@@ -249,9 +250,9 @@ if __name__ == '__main__':
 
         print(epoch, 'test accuracy:', correct_prediction/(total_counter))
         if best_accuracy < correct_prediction/(total_counter) :
-        	best_accuracy = correct_prediction/(total_counter) 
-		    torch.save(net, 'caps.mdl')
-		    print('saved to mdl file.')
+            best_accuracy = correct_prediction/(total_counter) 
+            torch.save(net, 'caps.mdl')
+            print('saved to mdl file.')
 
     tb.close()
 
