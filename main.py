@@ -9,7 +9,7 @@ import os
 from tensorboardX import SummaryWriter
 
 # change batch size for your GPU card !!!
-glo_batch_size = 180
+glo_batch_size = 100
 
 data_transform = transforms.Compose([
                     transforms.ToTensor(),
@@ -207,10 +207,9 @@ if __name__ == '__main__':
 
     best_accuracy = 0
 
-    if os.path.exists('caps.mdl'):
-        with open('caps.mdl','rb') as f:
-            net = torch.load('caps.mdl')
-            print('loaded mdl yet.')
+    if os.path.exists('caps.mdl'): 
+        net = torch.load('caps.mdl')
+        print('loaded mdl yet.')
 
     for epoch in range(300):
 
@@ -252,7 +251,7 @@ if __name__ == '__main__':
         if best_accuracy < correct_prediction/(total_counter) :
             best_accuracy = correct_prediction/(total_counter) 
             torch.save(net, 'caps.mdl')
-            print('saved to mdl file.')
+            print('saved to caps.mdl file.')
 
     tb.close()
 
