@@ -201,15 +201,17 @@ if __name__ == '__main__':
     net.cuda()
     print(net)
 
-    optimizer = optim.Adam(net.parameters(), lr = 1e-3)
+    optimizer = optim.Adam(net.parameters(), lr = 5e-4)
     tb = SummaryWriter()
 
-    if os.path.exists('mdl'):
-        with open('mdl','rb') as f:
-            net = torch.load('mdl')
-            print('load mdl yet.')
+    best_accuracy = 0
 
-    for epoch in range(30):
+    if os.path.exists('caps.mdl'):
+        with open('caps.mdl','rb') as f:
+            net = torch.load('caps.mdl')
+            print('loaded mdl yet.')
+
+    for epoch in range(300):
 
         net.train()
         for batch_idx, (data, target) in enumerate(tqdm(train_loader, total = len(train_loader), ncols=100, leave=False, unit='b'+str(epoch))):
@@ -241,14 +243,16 @@ if __name__ == '__main__':
             correct_prediction += target.eq(v1).sum().data.cpu().numpy()[0]
             total_counter += glo_batch_size
 
-            if batch_idx % 100 == 0:
+            if batch_idx % 1000 == 0:
                 tb.add_scalar('accuracy', correct_prediction/(total_counter))
                 break
 
         print(epoch, 'test accuracy:', correct_prediction/(total_counter))
+        if best_accuracy < correct_prediction/(total_counter) :
+        	best_accuracy = correct_prediction/(total_counter) 
+		    torch.save(net, 'caps.mdl')
+		    print('saved to mdl file.')
 
-    torch.save(net, 'mdl')
-    print('saved to mol file.')
     tb.close()
 
 
