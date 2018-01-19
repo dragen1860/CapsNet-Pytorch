@@ -108,7 +108,7 @@ class Route(nn.Module):
     def squash(self, input):
         mod_sq = torch.sum(input**2, dim = 2, keepdim = True)
         mod = torch.sqrt(mod_sq)
-        return (mod / (1 + mod)) * (input / mod_sq)
+        return (mod_sq / (1 + mod_sq)) * (input / mod)
 
     def forward(self, input):
         #input (batch, in_caps_num, in_caps_size) => (batch, in_caps_size, in_caps_num)
@@ -186,7 +186,7 @@ class Caps(nn.Module):
     def squash(self, input):
         mod_sq = torch.sum(input**2, dim = 2, keepdim = True)
         mod = torch.sqrt(mod_sq)
-        return (mod / (1 + mod)) * (input / mod_sq)
+        return (mod_sq / (1 + mod_sq)) * (input / mod)
 
 
 def to_one_hot(x, length):
